@@ -56,7 +56,7 @@ class_ids = ['BG', 'apple', 'orange', 'plum', 'banana', 'lemon', 'sachima',
                  'bun', 'doughnut', 'fired_dough_twist', 'mango', 'mooncake', 
                  'pear', 'coin']
 
-for idx, file in enumerate(glob.glob(os.path.join(json_path, '*'))):
+for idx, file in enumerate(glob.glob(os.path.join(json_path, '*.json'))):
     with open(file) as json_file:
         data = json.load(json_file)
     for key in data.keys():
