@@ -63,7 +63,7 @@ for idx, file in enumerate(glob.glob(os.path.join(json_path, '*.json'))):
         sample = key.split('.')[0]
         regions = data[key]['regions']
         if len(regions) == 0:
-            print("{} has no regions recorded".format(file))
+            print("{} has no regions recorded".format(sample))
         if regions != []:
             with Image.open(os.path.join(img_path, "{}.JPG".format(sample))) as img:
                 size = img.size
@@ -81,9 +81,9 @@ for idx, file in enumerate(glob.glob(os.path.join(json_path, '*.json'))):
                             img = parse_shape(shape, size)
                             arr = np.concatenate((arr, np.array(img)[:,:,None]), axis=2)
                         else:
-                            print("{} has {} regions recorded".format(file, len(regions)))
+                            print("{} has {} regions recorded".format(sample, len(regions)))
                             break
                     np.save(os.path.join(mask_path, '{}_mask.npy'.format(sample)), arr)
                     np.save(os.path.join(mask_path, '{}_mask_class.npy'.format(sample)), np.array(attributes, dtype=int))
                 else:
-                    print("{} has < 2 regions recorded".format(file))
+                    print("{} has < 2 regions recorded".format(sample))
