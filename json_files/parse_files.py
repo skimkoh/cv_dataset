@@ -92,12 +92,10 @@ for idx, file in enumerate(glob.glob(os.path.join(json_path, '*.json'))):
                         else:
                             print("{} has {} regions recorded".format(sample, len(regions)))
                             break
-                    s = np.sum(np.sum(arr,axis=0),axis=0)
-                    if s[0] == 0 or s[1] == 0:
-                        pass
-                        print(s, sample)
-                        #print(regions)
-                    np.save(os.path.join(mask_path, '{}_mask.npy'.format(sample)), arr)
-                    np.save(os.path.join(mask_path, '{}_mask_class.npy'.format(sample)), np.array(attributes, dtype=int))
+                    if attributes.count(20) == 1:
+                        np.save(os.path.join(mask_path, '{}_mask.npy'.format(sample)), arr)
+                        np.save(os.path.join(mask_path, '{}_mask_class.npy'.format(sample)), np.array(attributes, dtype=int))
+                    else:
+                        print("did not find exactly 1 coin mask for {}".format(sample))
                 else:
                     print("{} has < 2 regions recorded".format(sample))
