@@ -44,12 +44,21 @@ def parse_shape(shape, size):
         xy = list(zip(x,y))
         ImageDraw.Draw(img).polygon(xy, fill=1, outline=1)
 
+    if polygon_type == 'rect':
+        x, y, w, h = shape['x'], shape['y'], shape['width'], shape['height']
+        xy = [x-w/2, y-h/2, x+w/2, y+h/2]
+        ImageDraw.Draw(img).rectangle(xy, fill=1, outline=1)
+
     return img
 
 ROOT_DIR = os.path.abspath("../../")
 json_path = os.path.join(ROOT_DIR, '/content/cv_dataset/json_files')
 mask_path = os.path.join(ROOT_DIR, '/content/cv_dataset/mask_arrs')
 img_path = os.path.join(ROOT_DIR, '/content/cv_dataset/JPEGImages')
+
+#json_path = "C:/Users/User/Desktop/Computer Vision/cv_dataset/cv_dataset/json_files"
+#mask_path = "C:/Users/User/Desktop/Computer Vision/cv_dataset/cv_dataset/mask_arrs"
+#img_path = "C:/Users/User/Desktop/Computer Vision/cv_dataset/cv_dataset/JPEGImages"
 
 class_ids = ['BG', 'apple', 'orange', 'plum', 'banana', 'lemon', 'sachima',
                  'bread', 'peach', 'qiwi', 'tomato', 'grape', 'egg', 'litchi',
@@ -83,6 +92,11 @@ for idx, file in enumerate(glob.glob(os.path.join(json_path, '*.json'))):
                         else:
                             print("{} has {} regions recorded".format(sample, len(regions)))
                             break
+                    s = np.sum(np.sum(arr,axis=0),axis=0)
+                    if s[0] == 0 or s[1] == 0:
+                        pass
+                        print(s, sample)
+                        #print(regions)
                     np.save(os.path.join(mask_path, '{}_mask.npy'.format(sample)), arr)
                     np.save(os.path.join(mask_path, '{}_mask_class.npy'.format(sample)), np.array(attributes, dtype=int))
                 else:
