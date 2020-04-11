@@ -62,20 +62,28 @@ for idx, file in enumerate(glob.glob(os.path.join(json_path, '*.json'))):
     for key in data.keys():
         sample = key.split('.')[0]
         regions = data[key]['regions']
+        if len(regions) == 0:
+            print("{} has no regions recorded".format(file))
         if regions != []:
             with Image.open(os.path.join(img_path, "{}.JPG".format(sample))) as img:
                 size = img.size
                 arr = np.zeros((img.size[1], img.size[0], 0), dtype=bool)
                 attributes = []
-                for idx, region in enumerate(regions):
-                    if idx < 2: # I encountered repeat data
-                        try:
-                            attribute = region['region_attributes']['Attribute']
-                        except:
-                            attribute = region['region_attributes']['item']
-                        attributes.append(class_ids.index(attribute))
-                        shape = region['shape_attributes']
-                        img = parse_shape(shape, size)
-                        arr = np.concatenate((arr, np.array(img)[:,:,None]), axis=2)
-                        np.save(os.path.join(mask_path, '{}_mask.npy'.format(sample)), arr)
-                        np.save(os.path.join(mask_path, '{}_mask_class.npy'.format(sample)), np.array(attributes, dtype=int))
+                if len(regions) >= 2:
+                    for idx, region in enumerate(regions):
+                        if idx < 2: # I encountered repeat data
+                            try:
+                                attribute = region['region_attributes']['Attribute']
+                            except:
+                                attribute = region['region_attributes']['item']
+                            attributes.append(class_ids.index(attribute))
+                            shape = region['shape_attributes']
+                            img = parse_shape(shape, size)
+                            arr = np.concatenate((arr, np.array(img)[:,:,None]), axis=2)
+                        else:
+                            print("{} has {} regions recorded".format(file, len(regions)))
+                            break
+                    np.save(os.path.join(mask_path, '{}_mask.npy'.format(sample)), arr)
+                    np.save(os.path.join(mask_path, '{}_mask_class.npy'.format(sample)), np.array(attributes, dtype=int))
+                else:
+                    print("{} has < 2 regions recorded".format(file))
