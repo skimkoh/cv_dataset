@@ -46,7 +46,7 @@ def parse_shape(shape, size):
 
     if polygon_type == 'rect':
         x, y, w, h = shape['x'], shape['y'], shape['width'], shape['height']
-        xy = [x-w/2, y-h/2, x+w/2, y+h/2]
+        xy = [x, y, x+w, y+h]
         ImageDraw.Draw(img).rectangle(xy, fill=1, outline=1)
 
     return img
