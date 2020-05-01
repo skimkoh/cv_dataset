@@ -28,7 +28,7 @@ It uses the image segmentation from MRCNN to calculate the volume via the mask. 
 
 Our results shows an average of +-9.8% deviation of food volume across the dataset of 19 classes. 
 
-The file can be located in the volume_estimation folder. Masks used are located in the dropbox link below. 
+The file can be located in the volume_estimation folder. Arrays of masks used are located in the dropbox link below. 
 
 #### Other links
 
