@@ -32,7 +32,7 @@ The file can be located in the volume_estimation folder. Arrays of masks used ar
 
 #### Other links
 
-Dropbox link (for model weights, array of masks, etc): https://www.dropbox.com/sh/ruz6khnfybvxl66/AADchBZkbD2HdJTPx7bcDg79a?dl=0
+Dropbox link (for model weights, array of masks, etc): https://www.dropbox.com/sh/lm5gsmvvhyf2lrx/AABuwHcD8YRgxVdO_zSopQ-Va?dl=0
 
 
 FRCNN model (mentioned for FRCNN): https://github.com/skimkoh/cv_keras
