@@ -14,7 +14,7 @@ Accuracy:
 3. MRCNN - 94.75% (mAP) 
 
 #### CNN 
-Simple CNN. Model includes 2D convolutional layers, max pooling, dense and softmax layers. The weights of the model are classifier.h5 and classifier.json
+Simple CNN. Model includes 2D convolutional layers, max pooling, dense and softmax layers. The weights of the model are classifier.h5 and classifier.json. Code is found in another git repo at https://github.com/skimkoh/cv_keras
   
 #### FRCNN 
 Consists of two .ipynb files. frcnn_train.ipynb is used for training and frcnn_test.ipynb is used for testing, which will produce the results and confusion matrix.
