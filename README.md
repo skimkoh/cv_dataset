@@ -17,10 +17,12 @@ Accuracy:
 Simple CNN. Model includes 2D convolutional layers, max pooling, dense and softmax layers. The weights of the model are classifier.h5 and classifier.json.
   
 #### FRCNN 
-Consists of two .ipynb files. frcnn_train.ipynb is used for training and frcnn_test.ipynb is used for testing, which will produce the results and confusion matrix. Code is found in another git repo at https://github.com/skimkoh/cv_keras. To train the model, you can download the weights via the dropbox link. 
+Consists of two .ipynb files. frcnn_train.ipynb is used for training and frcnn_test.ipynb is used for testing, which will produce the results and confusion matrix. Code is found in another git repo at https://github.com/skimkoh/cv_keras. To test the model, you can download the weights via the dropbox link. 
+
+FRCNN is not sufficient enough for our needs for the later volume estimation. Therefore, we tried using MRCNN.
 
 #### MRCNN
-The .ipynb is located in the mrcnn folder, and weights are located in the dropbox link at the bottom. We had to train the model to get masks by annotating the dataset ourselves first. 
+The .ipynb is located in the mrcnn folder, and weights are located in the dropbox link at the bottom. MRCNN is able to produce a mask of the fruit in the picture. 
   
 #### Volume Estimation
 
